@@ -47,10 +47,10 @@
         <div class="row justify-content-around">
           <div class="col sm form-inline">
             <select class="form-control form-control-sm" style="width:auto;" name="psm" id="psm" required>
-                <option value="" selected>Psm</option>
+                <option value="" >Psm</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="3" selected>3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
@@ -64,21 +64,21 @@
                 <option value="14">14</option>
             </select>
             <select class="form-control form-control-sm" style="width:auto;" name="oem" id="oem" required>
-              <option value="" selected>Oem</option>
+              <option value="" >Oem</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="3" selected>3</option>
                 <option value="4">4</option>
                 <option value="0">0</option>
             </select>
             <select class="form-control form-control-sm" style="width:auto;" name="lang" id="lang" required>
-              <option value="" selected>Lang</option>
-              <option value="eng">eng</option>
+              <option value="" >Lang</option>
+              <option value="eng" selected>eng</option>
               <option value="fra">fra</option>
             </select>
             <select class="form-control form-control-sm" style="width:auto;" name="usepil" id="usepil" required>
-              <option value="" selected>Use Pillow</option>
-              <option value="True">True</option>
+              <option value="" >Use Pillow</option>
+              <option value="True" selected>True</option>
               <option value="False">False</option>
             </select>
             <input type="file" name="imguploader" id="imguploader" accept="image/*" onchange="displayimage();" required>
@@ -158,15 +158,17 @@
                   image64 : image64.split(',')[1],
                 }
         console.log(JSON.stringify(data));
-        let response = await fetch('https://4sqn0tchy6.execute-api.eu-west-1.amazonaws.com/test1', {
+        let response = await fetch('https://74q19qs1sl.execute-api.eu-central-1.amazonaws.com/dev', {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                mode:"cors",
                 body: JSON.stringify(data),
         })
 
         let text = await response.text(); // read response body as text
+        console.log(text)
         let results = JSON.parse(text);
         let body_result = JSON.parse(results["body"]);
         $body.removeClass("loading");
